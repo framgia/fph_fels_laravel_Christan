@@ -32,14 +32,16 @@ class CategoriesController extends Controller
         return redirect('/categories');
     }
 
-    public function edit()
+    public function edit(Category $category)
     {
-
+        return view('category.edit', compact('category'));
     }
 
-    public function update()
+    public function update(Category $category)
     {
+        $category->update($this->validateCategory());
 
+        return redirect('/categories');
     }
 
     public function delete()
