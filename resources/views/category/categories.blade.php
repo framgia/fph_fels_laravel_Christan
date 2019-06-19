@@ -2,9 +2,14 @@
 
 @section('content')
 <h1 class="title">Categories</h1>
-<ul>
+<div class="card-deck">
     @foreach ($categories as $category)
-        <li>{{ $category->title }}</li>
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"><b>{{ $category->title }}</b></h5>
+                <p class="card-text">{{ str_limit($category->description, $limit=60, $end='...') }}</p>
+            </div>
+        </div>
     @endforeach
-</ul>
+</div>
 @endsection
