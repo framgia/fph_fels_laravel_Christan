@@ -44,9 +44,11 @@ class CategoriesController extends Controller
         return redirect('/categories');
     }
 
-    public function delete()
+    public function destroy(Category $category)
     {
+        $category->delete();
 
+        return redirect('/categories');
     }
 
     protected function validateCategory(){

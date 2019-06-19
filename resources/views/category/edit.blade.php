@@ -23,6 +23,13 @@
                         <button class="btn btn-success" type="submit">Update</button>
                     </div>
                 </form>
+                <form action="/categories/{{ $category->id }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="form-group">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
