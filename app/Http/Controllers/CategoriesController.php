@@ -21,12 +21,15 @@ class CategoriesController extends Controller
 
     public function create()
     {
-
+        return view('category.create');
     }
 
     public function store()
     {
+        $attributes = $this->validateCategory();
+        Category::create($attributes);
 
+        return redirect('/categories');
     }
 
     public function edit()
@@ -42,5 +45,12 @@ class CategoriesController extends Controller
     public function delete()
     {
 
+    }
+
+    protected function validateCategory(){
+        return request()->validate([
+            'title' => ['required', 'min:3'],
+            'description' => ['required', 'min:8']
+        ]);
     }
 }
