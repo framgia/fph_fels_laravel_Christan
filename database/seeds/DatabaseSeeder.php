@@ -17,7 +17,15 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'John',
             'last_name' => 'Doe',
             'email' => 'johndoe@gmail.com',
-            'password' => md5('securepassword')
+            'password' => bcrypt('securepassword')
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Admin',
+            'last_name' => 'User',
+            'is_admin' => 1,
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('securepassword')
         ]);
 
         DB::table('categories')->insert([
