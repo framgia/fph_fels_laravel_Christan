@@ -46,8 +46,11 @@ class AdminCategoryController extends Controller
         return redirect('/admin/categories');
     }
 
-    public function destroy()
+    public function destroy(Category $category)
     {
+        $category->delete();
+
+        return redirect('/admin/categories');
     }
 
     protected function validateCategory(){
