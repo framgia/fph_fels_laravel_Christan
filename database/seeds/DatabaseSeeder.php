@@ -21,8 +21,18 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('categories')->insert([
-            'title' => 'Seeded Project',
-            'description' => 'Project Description'
+            [
+                'title' => 'Seeded Project 1',
+                'description' => 'Project Description'
+            ],
+            [
+                'title' => 'Seeded Project 2',
+                'description' => 'Project Description'
+            ],
+            [
+                'title' => 'Seeded Project 3',
+                'description' => 'Project Description'
+            ],
         ]);
     }
 }
