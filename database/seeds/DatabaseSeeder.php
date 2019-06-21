@@ -42,5 +42,24 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Project Description'
             ],
         ]);
+
+        DB::table('words')->insert([
+            [
+                'category_id' => 1,
+                'text' => 'Word 1',
+            ],
+            [
+                'category_id' => 1,
+                'text' => 'Word 2',
+            ],
+            [
+                'category_id' => 1,
+                'text' => 'Word 3',
+            ],
+            [
+                'category_id' => 2,
+                'text' => 'Word 4',
+            ],
+        ]);
     }
 }

@@ -10,4 +10,9 @@ class Category extends Model
         'title',
         'description'
     ];
+
+    public function words()
+    {
+        return $this->hasMany(Word::class);
+    }
 }
