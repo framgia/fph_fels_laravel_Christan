@@ -11,4 +11,9 @@ class Word extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function choices()
+    {
+        return $this->hasMany(Choice::class);
+    }
 }
