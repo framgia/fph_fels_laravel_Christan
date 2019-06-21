@@ -15,6 +15,13 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
+        @if (session('message'))
+            <div class="alert alert-success" role="alert">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
+    <div class="col-lg-12">
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
