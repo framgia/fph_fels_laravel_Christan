@@ -16,7 +16,7 @@ class AdminCategoryController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.categories', compact('categories'));
+        return view('admin.category.categories', compact('categories'));
     }
 
     public function show(Category $category)
@@ -34,14 +34,16 @@ class AdminCategoryController extends Controller
 
     }
 
-    public function edit()
+    public function edit(Category $category)
     {
-
+        return view('admin.category.edit', compact('category'));
     }
 
-    public function update()
+    public function update(Category $category)
     {
+        $category->update($this->validateCategory());
 
+        return redirect('/admin/categories');
     }
 
     public function destroy()
