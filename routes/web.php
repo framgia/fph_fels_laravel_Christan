@@ -19,6 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/admin/categories', 'AdminCategoryController');
+Route::prefix('admin')->group(function (){
+    Route::resource('/categories', 'AdminCategoryController');
+    Route::post('/categories/{category}/words', 'AdminWordsController@store');
+    Route::get('/categories/{category}/words/create', 'AdminWordsController@create');
+
+});
 
 Route::resource('categories', 'CategoriesController');
