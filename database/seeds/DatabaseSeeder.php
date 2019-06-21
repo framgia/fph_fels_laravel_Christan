@@ -61,5 +61,24 @@ class DatabaseSeeder extends Seeder
                 'text' => 'Word 4',
             ],
         ]);
+
+        DB::table('choices')->insert([
+            [
+                'word_id' => 1,
+                'text' => 'Choice 1',
+            ],
+            [
+                'word_id' => 1,
+                'text' => 'Choice 2',
+            ],
+            [
+                'word_id' => 1,
+                'text' => 'Choice 3',
+            ],
+            [
+                'word_id' => 1,
+                'text' => 'Choice 4',
+            ],
+        ]);
     }
 }
