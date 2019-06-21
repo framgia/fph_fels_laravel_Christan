@@ -39,7 +39,7 @@
                                 Add Word
                             </a>
                             |
-                            <a href="">
+                            <a href="/admin/categories/{{ $category->id }}/edit">
                                 Edit
                             </a>
                             |
