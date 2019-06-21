@@ -14,9 +14,9 @@ class CategoriesController extends Controller
         return view('category.categories', compact('categories'));
     }
 
-    public function show()
+    public function show(Category $category)
     {
-
+        return view('category.show', compact('category'));
     }
 
     public function create()
