@@ -12,7 +12,7 @@ class AdminController extends Controller
         $this->middleware('admin');
     }
 
-    public function index(){
+    public function categories(){
         $categories = Category::all();
 
         return view('admin.categories', compact('categories'));
