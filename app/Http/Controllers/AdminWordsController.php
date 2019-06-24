@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Word;
 use App\Category;
-use Illuminate\Http\Request;
-use App\Http\Requests\CreateWord;
+use App\Http\Requests\StoreWord;
 
 class AdminWordsController extends Controller
 {
@@ -14,7 +13,7 @@ class AdminWordsController extends Controller
         return view('admin.word.create', compact('category'));
     }
 
-    public function store(Category $category, CreateWord $request)
+    public function store(Category $category, StoreWord $request)
     {
         $attributes = $request->validated();
         $attributes['category_id'] = $category->id;

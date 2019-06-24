@@ -8,7 +8,7 @@
                 <b>New Category</b>
             </div>
             <div class="card-body">
-                <form action="/categories" method="post">
+                <form action="/admin/categories" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="title">Category Title</label>
