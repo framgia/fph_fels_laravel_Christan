@@ -27,3 +27,5 @@ Route::prefix('admin')->group(function (){
 });
 
 Route::resource('categories', 'CategoriesController');
+
+Route::resource('lessons', 'LessonController');
