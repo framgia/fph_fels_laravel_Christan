@@ -19,4 +19,20 @@ class LessonController extends Controller
         $lessons = Auth::user()->lessons;
         return view('lessons.lessons', compact('lessons'));
     }
+
+    public function store()
+    {
+        $attributes = $this->validateLesson();
+        $attributes['user_id'] = auth()->id();
+        Lesson::create($attributes);
+
+        return redirect('/lessons');
+    }
+
+    private function validateLesson()
+    {
+        return request()->validate([
+            'category_id' => 'required'
+        ]);
+    }
 }

@@ -40,6 +40,9 @@
                                 <a href="/categories" class="dropdown-item">
                                     Categories
                                 </a>
+                                <a href="/lessons" class="dropdown-item">
+                                    Lessons
+                                </a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
