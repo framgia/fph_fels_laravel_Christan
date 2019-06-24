@@ -1,7 +1,11 @@
 @extends('layout')
 
 @section('content')
-@foreach ($lessons as $lesson)
-    Lesson
-@endforeach
+<ul>
+    @foreach ($lessons as $lesson)
+    <li>
+        {{ $lesson->category->title }}
+    </li>
+    @endforeach
+</ul>
 @endsection

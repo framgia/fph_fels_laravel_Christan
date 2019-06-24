@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
+    protected $fillable = ['category_id', 'user_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
