@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategory;
 
 class AdminCategoryController extends Controller
 {
@@ -24,14 +25,18 @@ class AdminCategoryController extends Controller
         return view('admin.category.show', compact('category'));
     }
 
-    public function create()
+    public function create(Category $category)
     {
-
+        return view('admin.category.create');
     }
 
-    public function store()
+    public function store(StoreCategory $request)
     {
+        $attributes = $request->validated();
+        Category::create($attributes);
+        session()->flash('message', $attributes['title'] . ' category has been created.');
 
+        return redirect('/admin/categories');
     }
 
     public function edit(Category $category)
@@ -39,9 +44,9 @@ class AdminCategoryController extends Controller
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update(Category $category)
+    public function update(StoreCategory $request, Category $category)
     {
-        $category->update($this->validateCategory());
+        $category->update($request->validated());
 
         return redirect('/admin/categories');
     }
@@ -51,12 +56,5 @@ class AdminCategoryController extends Controller
         $category->delete();
 
         return redirect('/admin/categories');
-    }
-
-    protected function validateCategory(){
-        return request()->validate([
-            'title' => ['required', 'min:3'],
-            'description' => ['required', 'min:8']
-        ]);
     }
 }

@@ -18,11 +18,4 @@ class CategoriesController extends Controller
     {
         return view('category.show', compact('category'));
     }
-
-    protected function validateCategory(){
-        return request()->validate([
-            'title' => ['required', 'min:3'],
-            'description' => ['required', 'min:8']
-        ]);
-    }
 }

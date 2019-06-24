@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         Admin Panel
         <ul class="float-right">
-            <a href="create.php">
+            <a href="/admin/categories/create">
                 <button class="btn btn-sm btn-success">
                     Create New <i class="fas fa-plus-square"></i>
                 </button>
