@@ -25,6 +25,7 @@ Route::prefix('admin')->group(function (){
     Route::get('/categories/{category}/words/create', 'AdminWordsController@create');
 
 });
+Route::resource('/admin/words', 'AdminWordsController');
 
 Route::resource('categories', 'CategoriesController');
 
