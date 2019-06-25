@@ -42,17 +42,7 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Seeded Project 1',
                 'description' => 'Project Description',
                 'created_at' => Carbon::now()
-            ],
-            [
-                'title' => 'Seeded Project 2',
-                'description' => 'Project Description',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'title' => 'Seeded Project 3',
-                'description' => 'Project Description',
-                'created_at' => Carbon::now()
-            ],
+            ]
         ]);
 
         DB::table('words')->insert([
