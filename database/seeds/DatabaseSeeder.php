@@ -82,5 +82,13 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],
         ]);
+
+        DB::table('lessons')->insert([
+            [
+                'category_id' => 1,
+                'user_id' => 2,
+                'created_at' => Carbon::now()
+            ]
+        ]);
     }
 }

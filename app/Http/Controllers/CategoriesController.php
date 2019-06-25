@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Lesson;
 use App\Category;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
     public function index()
     {
         $categories = Category::all()->map(function ($category){
-            return $category->words->count() > 0 ? $category : null;
+            $lesson = $category->lessons->whereIn('user_id', auth()->id());
+            if($category->words->count() && !$lesson->count()) {
+                return $category;
+            }
         })->filter();
 
         return view('category.categories', compact('categories'));
