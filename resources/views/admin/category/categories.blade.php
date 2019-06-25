@@ -32,7 +32,7 @@
                             </a>
                         </td>
                         <td>
-                            {{ str_limit($category->description, $limit=30, $end='...') }}
+                            {{ str_limit($category->description, $limit=30, $end='..') }}
                         </td>
                         <td>
                             <form method="POST" action="/admin/categories/{{ $category->id }}">
