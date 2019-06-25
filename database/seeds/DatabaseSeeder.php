@@ -42,6 +42,11 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Seeded Project 1',
                 'description' => 'Project Description',
                 'created_at' => Carbon::now()
+            ],
+            [
+                'title' => 'Seeded Project 2',
+                'description' => 'Project Description',
+                'created_at' => Carbon::now()
             ]
         ]);
 
@@ -76,19 +81,6 @@ class DatabaseSeeder extends Seeder
                 'text' => 'Choice 4',
                 'created_at' => Carbon::now()
             ],
-        ]);
-
-        DB::table('lessons')->insert([
-            [
-                'category_id' => 1,
-                'user_id' => 2,
-                'created_at' => Carbon::now()
-            ],
-            [
-                'category_id' => 1,
-                'user_id' => 3,
-                'created_at' => Carbon::now()
-            ]
         ]);
     }
 }

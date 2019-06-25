@@ -9,7 +9,9 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::all()->map(function ($category){
+            return $category->words->count() > 0 ? $category : null;
+        })->filter();
 
         return view('category.categories', compact('categories'));
     }
