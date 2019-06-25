@@ -39,15 +39,15 @@ class Word extends Model
         $choices->updateRecord($attributes);
     }
 
-    public function deleteRecord(Word $word)
+    public function deleteRecord()
     {
-        $choices = $word->choices;
+        $choices = $this->choices;
 
         foreach ($choices as $choice)
         {
             $choice->delete();
         }
 
-        return redirect('/admin/categories/' . $word->category->id);
+        return redirect('/admin/categories/' . $this->category->id);
     }
 }

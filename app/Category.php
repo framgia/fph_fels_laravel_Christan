@@ -21,4 +21,13 @@ class Category extends Model
     {
         return $this->hasMany(Lesson::class);
     }
+
+    public function deleteRecord()
+    {
+        $words = $this->words;
+        foreach($words as $word) {
+            $word->deleteRecord();
+            $word->delete();
+        }
+    }
 }

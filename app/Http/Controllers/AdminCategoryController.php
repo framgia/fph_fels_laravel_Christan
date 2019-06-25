@@ -53,6 +53,7 @@ class AdminCategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        $category->deleteRecord();
         $category->delete();
 
         return redirect('/admin/categories');
