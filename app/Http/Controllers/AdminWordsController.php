@@ -31,7 +31,7 @@ class AdminWordsController extends Controller
         (new Word)->newRecord($attributes);
         session()->flash('message', $attributes['text'].' has been added to ' . $category->title);
 
-        return redirect('/admin/categories');
+        return redirect('/admin/categories/' . $category->id);
     }
 
     public function edit(Word $word)
@@ -40,23 +40,12 @@ class AdminWordsController extends Controller
         return view('admin.word.edit', compact('word', 'choices'));
     }
 
-    public function update(Word $word)
+    public function update(Word $word, StoreWord $request)
     {
-        $attributes = $this->validateEntry();
+        $attributes = $request->validated();
         $attributes['word_id'] = $word->id;
         $word->updateRecord($attributes);
 
-        return redirect('/admin/categories');
-    }
-
-    protected function validateEntry(){
-        return request()->validate([
-            'text' => ['required'],
-            'choice0' => ['required', 'min:3'],
-            'choice1' => ['required', 'min:3'],
-            'choice2' => ['required', 'min:3'],
-            'choice3' => ['required', 'min:3'],
-            'answer' => ['required'],
-        ]);
+        return redirect('/admin/categories/' . $word->category->id);
     }
 }

@@ -22,7 +22,7 @@ class Choice extends Model
             $attributes['choice3'],
         ];
         foreach ($choices as $key => $choice) {
-            if ($key === $attributes['answer']) {
+            if ($key == $attributes['answer']) {
                 $this->create([
                     'word_id' => $attributes['word_id'],
                     'text' => $choice,
@@ -47,7 +47,7 @@ class Choice extends Model
         ];
         $records = Choice::whereWordId($attributes['word_id'])->get();
         foreach($records as $key => $record) {
-            if($record->text == $attributes['answer']) {
+            if($record->text === $attributes['answer']) {
                 $record->update([
                     'text' => $choices[$key],
                     'is_correct' => 1
