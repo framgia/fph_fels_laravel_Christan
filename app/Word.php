@@ -38,4 +38,16 @@ class Word extends Model
         $choices = new Choice;
         $choices->updateRecord($attributes);
     }
+
+    public function deleteRecord(Word $word)
+    {
+        $choices = $word->choices;
+
+        foreach ($choices as $choice)
+        {
+            $choice->delete();
+        }
+
+        return redirect('/admin/categories/' . $word->category->id);
+    }
 }

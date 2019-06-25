@@ -37,6 +37,7 @@ class AdminWordsController extends Controller
     public function edit(Word $word)
     {
         $choices = $word->choices;
+
         return view('admin.word.edit', compact('word', 'choices'));
     }
 
@@ -47,5 +48,13 @@ class AdminWordsController extends Controller
         $word->updateRecord($attributes);
 
         return redirect('/admin/categories/' . $word->category->id);
+    }
+
+    public function destroy(Word $word)
+    {
+        $word->deleteRecord($word);
+        $word->delete();
+
+        return redirect('admin/categories/' . $word->category->id);
     }
 }
