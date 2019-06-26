@@ -32,3 +32,5 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('lessons', 'LessonController');
 
 Route::resource('quiz', 'QuizController');
+
+Route::resource('answer', 'AnswerController');
