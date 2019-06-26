@@ -16,9 +16,8 @@ class QuizController extends Controller
 
     public function show(Quiz $quiz)
     {
-        $words = Word::where('category_id', $quiz->lesson->category_id)->simplePaginate(1);
-        $words->withPath($quiz->lesson->category->title . '/quiz');
+        $words = Word::where('category_id', $quiz->lesson->category_id)->paginate(1);
 
-        return view('quiz.quiz', compact($words));
+        return view('quiz.quiz', compact('words', 'quiz'));
     }
 }
