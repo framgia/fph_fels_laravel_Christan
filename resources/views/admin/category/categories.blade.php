@@ -32,20 +32,24 @@
                             </a>
                         </td>
                         <td>
-                            {{ str_limit($category->description, $limit=30, $end='...') }}
+                            {{ str_limit($category->description, $limit=30, $end='..') }}
                         </td>
                         <td>
-                            <a href="">
-                                Add Word
-                            </a>
-                            |
-                            <a href="/admin/categories/{{ $category->id }}/edit">
-                                Edit
-                            </a>
-                            |
-                            <a href="">
-                                Delete
-                            </a>
+                            <form method="POST" action="/admin/categories/{{ $category->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <a href="/admin/categories/{{ $category->id }}/words/create" class="btn btn-link">
+                                    Add Word
+                                </a>
+                                |
+                                <a href="/admin/categories/{{ $category->id }}/edit" class="btn btn-link">
+                                    Edit
+                                </a>
+                                |
+                                <button type="submit" class="btn btn-link" onclick="return confirm('Are you sure?')">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
