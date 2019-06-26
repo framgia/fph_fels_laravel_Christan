@@ -25,4 +25,16 @@ class Lesson extends Model
     {
         return $this->hasMany(Quiz::class);
     }
+
+    public function createLesson($attributes)
+    {
+        $record = $this->create([
+            'category_id' => $attributes['category_id'],
+            'user_id' => $attributes['user_id']
+        ]);
+        $quiz = new Quiz;
+        $quiz->createQuiz($record->id);
+
+        return $record;
+    }
 }
