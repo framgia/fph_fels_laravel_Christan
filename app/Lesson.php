@@ -22,9 +22,9 @@ class Lesson extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function quizzes()
+    public function quiz()
     {
-        return $this->hasMany(Quiz::class);
+        return $this->hasOne(Quiz::class);
     }
 
     public function answers()

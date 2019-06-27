@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('profile/{id}', 'UserController@profile');
 
 Route::prefix('admin')->group(function (){
     Route::resource('/categories', 'AdminCategoryController');
