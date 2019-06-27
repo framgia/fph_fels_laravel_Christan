@@ -32,6 +32,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a href="/profile/{{ auth()->user()->id }}"  class="dropdown-item">
+                                Profile
+                            </a>
                             @if (Auth::user()->is_admin === 1)
                                 <a href="/admin/categories" class="dropdown-item">
                                     Admin | Categories
