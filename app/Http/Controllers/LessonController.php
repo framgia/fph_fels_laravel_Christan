@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Quiz;
+use App\Answer;
 use App\Lesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +31,15 @@ class LessonController extends Controller
         $quiz = Lesson::where($attributes)->first();
 
         return redirect('/quiz/' . $quiz->id);
+    }
+
+    public function show($id)
+    {
+        $lesson = Lesson::where('id', $id)->first();
+        $answers = Answer::whereLessonId($id)->get();
+        $quiz = Quiz::where('lesson_id', $id)->first();
+
+        return view('lessons.show', compact('lesson', 'answers', 'quiz'));
     }
 
     private function validateLesson()

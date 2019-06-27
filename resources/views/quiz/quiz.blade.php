@@ -16,7 +16,7 @@
                         @csrf
                         <div class="row">
                             @if ($words->currentPage() == $words->lastPage())
-                                <input type="hidden" name="next_url" value="/lessons">
+                                <input type="hidden" name="next_url" value="/lessons/{{$quiz->lesson->id}}">
                                 <input type="hidden" name="completed" value="1">
                             @else
                                 <input type="hidden" name="next_url" value="{{ $words->nextPageUrl() }}">
