@@ -6,13 +6,23 @@
         <div class="card">
             <div class="card-header">
                 {{ $quiz->lesson->category->title }}
+                <span class="float-right">
+                    {{ $words->currentPage() }} of  {{ $words->lastPage() }}
+                </span>
             </div>
             <div class="card-body">
                 @foreach ($words as $word)
                     <form action="/answer/" method="POST">
                         @csrf
                         <div class="row">
-                            <input type="hidden" name="next_url" value="{{ $words->nextPageUrl() }}">
+                            @if ($words->currentPage() == $words->lastPage())
+                                <input type="hidden" name="next_url" value="/lessons">
+                                <input type="hidden" name="completed" value="1">
+                            @else
+                                <input type="hidden" name="next_url" value="{{ $words->nextPageUrl() }}">
+                                <input type="hidden" name="completed" value="0">
+                            @endif
+                            <input type="hidden" name="quiz_id" value="{{ $quiz->id }}">
                             <input type="hidden" name="lesson_id" value="{{ $quiz->lesson->id }}">
                             <div class="col-lg-4">
                                 <div class="row justify-content-center">
@@ -27,7 +37,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <input type="radio" name="answer" value="{{ $choice->id }}">
+                                                    <input type="radio" name="answer" value="{{ $choice->id }}" required>
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control" value="{{ $choice->text }}" readonly>
