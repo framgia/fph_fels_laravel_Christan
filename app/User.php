@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Lesson;
+use App\Activity;
 use App\Relationship;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function following()
     {
         return $this->hasMany(Relationship::class, 'follower_id', 'id');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

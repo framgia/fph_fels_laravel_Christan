@@ -26,11 +26,15 @@ class LessonController extends Controller
     {
         $attributes = $this->validateLesson();
         $attributes['user_id'] = auth()->id();
-        $lesson = new Lesson;
-        $lesson->createLesson($attributes);
-        $quiz = Lesson::where($attributes)->first();
+        if(Lesson::where($attributes)->get()->count()) {
+            return redirect('/home')->with('message', 'You have already taken this lesson!');
+        } else {
+            $lesson = new Lesson;
+            $lesson->createLesson($attributes);
+            $quiz = Lesson::where($attributes)->first();
 
-        return redirect('/quiz/' . $quiz->id);
+            return redirect('/quiz/' . $quiz->id);
+        }
     }
 
     public function show($id)

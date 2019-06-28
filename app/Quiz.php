@@ -20,6 +20,11 @@ class Quiz extends Model
         $this->completed = '1';
     }
 
+    public function activity()
+    {
+        return $this->morphMany('App\Activity', 'notifiable');
+    }
+
     public function createQuiz($id)
     {
         $this->create([

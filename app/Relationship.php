@@ -18,4 +18,9 @@ class Relationship extends Model
     {
         return $this->belongsTo(User::class, 'followed_id', 'id');
     }
+
+    public function activity()
+    {
+        return $this->morphMany('App\Activity', 'notifiable');
+    }
 }
