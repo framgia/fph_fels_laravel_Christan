@@ -3,7 +3,17 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-12">
+        @if (session('message'))
+            <div class="alert alert-success" role="alert">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
+    <div class="col-lg-12">
         <div class="card">
+            <div class="card-header">
+                User Profile
+            </div>
             <div class="row justify-content-center">
                 <div class="col-md-3">
                     <img src="/avatar/{{ $user->avatar }}" class="img-fluid">
@@ -16,7 +26,7 @@
                         <div class="col-md-6">
                             <div class="row justify-content-center">
                                 <h3>
-                                    50
+                                    {{ $user->followers->count() }}
                                 </h3>
                             </div>
                             <div class="row justify-content-center">
@@ -26,7 +36,7 @@
                         <div class="col-md-6">
                             <div class="row justify-content-center">
                                 <h3>
-                                    50
+                                    {{ $user->following->count() }}
                                 </h3>
                             </div>
                             <div class="row justify-content-center">
@@ -35,13 +45,19 @@
                         </div>
                     </div>
                     @if (Auth::user()->id !== $user->id)
-                        <div class="row justify-content-center mt-4">
-                            <div class="col">
-                                <button class="btn btn-primary btn-block">
-                                    Follow
-                                </button>
+                        <form action="/relationship/{{ $relationship != null ? $relationship->id : '' }}" method="POST">
+                            @csrf
+                            @method($relationship != null ? "DELETE" : "POST")
+                            <input type="hidden" name="follower_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="followed_id" value="{{ $user->id}} ">
+                            <div class="row justify-content-center mt-4">
+                                <div class="col">
+                                    <button class="btn btn-primary btn-block" type="submit">
+                                        {{ $relationship != null ? "Unfollow" : "Follow" }}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     @endif
                     <div class="row justify-content-center mt-4 mb-4">
                         Learned 20 words
