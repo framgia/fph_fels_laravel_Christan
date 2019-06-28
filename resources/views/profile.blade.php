@@ -65,11 +65,27 @@
                 </div>
                 <div class="col-md-9">
                     <ul class="list-unstyled">
-                        @foreach ($user->lessons as $lesson)
+                        @foreach ($user->activities->sortByDesc('created_at')->take(10) as $activity)
                             <li class="media mt-4">
-                                <img src="/storage/avatar/{{ $user->avatar }}" width="75" class="mr-3 img-fluid" alt="...">
+                                <img src="/avatar/{{ $user->avatar }}" width="75" class="mr-3 img-fluid" alt="...">
                                 <div class="media-body">
-                                    {{ $user->first_name }} has learned {{ $lesson->quiz->result }} out of {{ $lesson->category->words->count() }} in {{ $lesson->category->title }}
+                                    <p>
+                                        <a href="/profile/{{ $activity->user->id }}">
+                                            {{ $activity->user->id === auth()->user()->id ? 'You' : $activity->user->first_name }}
+                                        </a>
+                                        @if($activity->notifiable_type === "App\Quiz")
+                                            {{ $activity->content }}
+                                            <a href="/categories/{{ $activity->notifiable->lesson->category->id }}">
+                                                {{ $activity->notifiable->lesson->category->title }}
+                                            </a>
+                                        @elseif ($activity->notifiable_type ===  "App\Relationship")
+                                            {{ $activity->content }}
+                                            <a href="/profile/{{ $activity->notifiable->followed->id }}">
+                                                {{ $activity->notifiable->followed->id == auth()->user()->id ? 'You' : $activity->notifiable->followed->first_name }}
+                                            </a>
+                                        @endif
+                                    </p>
+                                    <small class="muted">{{ Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</small>
                                 </div>
                             </li>
                         @endforeach

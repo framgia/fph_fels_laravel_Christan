@@ -10,7 +10,11 @@
                     <p class="mt-3">
                         {{ $category->description }}
                     </p>
-                    <a href="#" class="btn btn-outline-primary float-right">Start Lesson</a>
+                    <form method="POST" action="/lessons/">
+                        @csrf
+                        <input type="hidden" name="category_id" value="{{ $category->id }}">
+                        <button class="btn btn-outline-primary float-right">Start Lesson</button>
+                    </form>
                 </div>
             </div>
         </div>
