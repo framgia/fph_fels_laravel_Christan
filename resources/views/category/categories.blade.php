@@ -4,7 +4,7 @@
 <h1 class="title">Categories</h1>
 <div class="card-deck">
     @foreach ($categories as $category)
-        <div class="card">
+        <div class="card shadow">
             <div class="card-body">
                 <a href="/categories/{{ $category->id }}">
                     <h5 class="card-title"><b>{{ $category->title }}</b></h5>

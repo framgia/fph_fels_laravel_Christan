@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('content')
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-4">
     <div class="col-lg-12">
-        <div class="card">
+        <div class="card shadow">
             <div class="card-header">
                 {{ $quiz->lesson->category->title }}
                 <span class="float-right">
