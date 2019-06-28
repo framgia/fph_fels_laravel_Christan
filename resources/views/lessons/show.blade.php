@@ -28,7 +28,7 @@
                         <tr>
                             <td>
 
-                                <i class="{{$answer->choice->is_correct == 1 ? 'far fa-circle' : 'fas fa-times'}}"></i>
+                                <i class="{{$answer->choice->is_correct == 1 ? 'far fa-circle' : 'fas fa-times'}}">{{$answer->choice->is_correct == 1 ? ' Correct' : ' Wrong'}}</i>
                             </td>
                             <td>
                                 {{ $answer->choice->word->text }}

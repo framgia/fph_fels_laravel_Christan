@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
@@ -7,6 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
@@ -14,7 +15,7 @@
             </ul>
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto justify-content-end">
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -26,9 +27,15 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/categories">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lessons">Results</a>
+                    </li>
+                    <li class="nav-item dropdown ml-4">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->first_name }} <span class="caret"></span>
+                            <b>{{ Auth::user()->first_name }} <span class="caret"></span></b>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -38,13 +45,6 @@
                             @if (Auth::user()->is_admin === 1)
                                 <a href="/admin/categories" class="dropdown-item">
                                     Admin | Categories
-                                </a>
-                            @else
-                                <a href="/categories" class="dropdown-item">
-                                    Categories
-                                </a>
-                                <a href="/lessons" class="dropdown-item">
-                                    Lessons
                                 </a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
