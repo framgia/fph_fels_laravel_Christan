@@ -25,10 +25,10 @@ class StoreWord extends FormRequest
     {
         return [
             'text' => ['required', 'min:1'],
+            'choice0' => ['required', 'min:3'],
             'choice1' => ['required', 'min:3'],
             'choice2' => ['required', 'min:3'],
             'choice3' => ['required', 'min:3'],
-            'choice4' => ['required', 'min:3'],
             'answer' => ['required'],
         ];
     }

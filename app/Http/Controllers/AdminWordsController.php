@@ -8,6 +8,12 @@ use App\Http\Requests\StoreWord;
 
 class AdminWordsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function show(Word $word)
     {
         return view ('admin.word.show', compact('word'));
@@ -25,6 +31,21 @@ class AdminWordsController extends Controller
         (new Word)->newRecord($attributes);
         session()->flash('message', $attributes['text'].' has been added to ' . $category->title);
 
-        return redirect('/admin/categories');
+        return redirect('/admin/categories/' . $category->id);
+    }
+
+    public function edit(Word $word)
+    {
+        $choices = $word->choices;
+        return view('admin.word.edit', compact('word', 'choices'));
+    }
+
+    public function update(Word $word, StoreWord $request)
+    {
+        $attributes = $request->validated();
+        $attributes['word_id'] = $word->id;
+        $word->updateRecord($attributes);
+
+        return redirect('/admin/categories/' . $word->category->id);
     }
 }

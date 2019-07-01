@@ -19,7 +19,8 @@ class Word extends Model
         return $this->hasMany(Choice::class);
     }
 
-    public function newRecord($attributes){
+    public function newRecord($attributes)
+    {
         $record = $this->create([
             'category_id' => $attributes['category_id'],
             'text' => $attributes['text'],
@@ -27,5 +28,14 @@ class Word extends Model
         $attributes['word_id'] = $record->id;
         $attributes = collect($attributes)->forget('category_id')->forget('text');
         (new Choice)->newRecord($attributes);
+    }
+
+    public function updateRecord($attributes)
+    {
+        $this->update([
+            'text' => $attributes['text']
+        ]);
+        $choices = new Choice;
+        $choices->updateRecord($attributes);
     }
 }

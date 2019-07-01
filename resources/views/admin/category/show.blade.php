@@ -9,6 +9,11 @@
                 <p class="mt-3">
                     {{ $category->description }}
                 </p>
+                <a href="/admin/categories/{{ $category->id }}/words/create">
+                    <button class="btn btn-sm btn-success mb-4">
+                        Add Word <i class="fas fa-plus-square"></i>
+                    </button>
+                </a>
                 @if ($category->words->count())
                 <div class="row">
                     <div class="col-lg-12">
@@ -45,7 +50,9 @@
                     </div>
                 </div>
                 @else
+                <p>
                     This category has no words yet.
+                </p>
                 @endif
             </div>
         </div>
