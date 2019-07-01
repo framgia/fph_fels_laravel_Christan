@@ -61,29 +61,16 @@ class DatabaseSeeder extends Seeder
                 'text' => 'Word 1',
                 'created_at' => Carbon::now()
             ],
-            [
-                'category_id' => 1,
-                'text' => 'Word 2',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'category_id' => 1,
-                'text' => 'Word 3',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'category_id' => 2,
-                'text' => 'Word 4',
-                'created_at' => Carbon::now()
-            ],
         ]);
 
         DB::table('choices')->insert([
-            [
-                'word_id' => 1,
-                'text' => 'Choice 1',
-                'created_at' => Carbon::now()
-            ],
+            'word_id' => 1,
+            'text' => 'Choice 1',
+            'created_at' => Carbon::now(),
+            'is_correct' =>1,
+        ]);
+
+        DB::table('choices')->insert([
             [
                 'word_id' => 1,
                 'text' => 'Choice 2',
