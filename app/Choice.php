@@ -22,7 +22,7 @@ class Choice extends Model
             $attributes['choice4'],
         ];
         foreach ($choices as $key => $choice) {
-            if ($key == $attributes['answer']) {
+            if ($key === $attributes['answer']) {
                 $this->create([
                     'word_id' => $attributes['word_id'],
                     'text' => $choice,

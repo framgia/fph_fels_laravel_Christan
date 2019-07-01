@@ -8,6 +8,11 @@ use App\Http\Requests\StoreWord;
 
 class AdminWordsController extends Controller
 {
+    public function show(Word $word)
+    {
+        return view ('admin.word.show', compact('word'));
+    }
+
     public function create(Category $category)
     {
         return view('admin.word.create', compact('category'));
