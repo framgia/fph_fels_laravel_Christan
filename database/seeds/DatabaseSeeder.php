@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
 
         DB::table('categories')->insert([
             [
-                'title' => 'Seeded Project 1',
-                'description' => 'Project Description',
+                'title' => 'Basic Nihongo',
+                'description' => 'Basic Japanese Terminologies',
                 'created_at' => Carbon::now()
             ],
             [
@@ -53,14 +53,30 @@ class DatabaseSeeder extends Seeder
         DB::table('words')->insert([
             [
                 'category_id' => 1,
-                'text' => 'Word 1',
+                'text' => 'Mizu',
+                'created_at' => Carbon::now()
+            ],
+        ]);
+
+        DB::table('words')->insert([
+            [
+                'category_id' => 1,
+                'text' => 'Niku',
+                'created_at' => Carbon::now()
+            ],
+        ]);
+
+        DB::table('words')->insert([
+            [
+                'category_id' => 1,
+                'text' => 'Hon',
                 'created_at' => Carbon::now()
             ],
         ]);
 
         DB::table('choices')->insert([
             'word_id' => 1,
-            'text' => 'Choice 1',
+            'text' => 'Water',
             'created_at' => Carbon::now(),
             'is_correct' =>1,
         ]);
@@ -83,12 +99,52 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        DB::table('lessons')->insert([
+        DB::table('choices')->insert([
+            'word_id' => 2,
+            'text' => 'Meat',
+            'created_at' => Carbon::now(),
+            'is_correct' =>1,
+        ]);
+        DB::table('choices')->insert([
             [
-                'category_id' => 1,
-                'user_id' => 2,
+                'word_id' => 2,
+                'text' => 'Choice 2',
                 'created_at' => Carbon::now()
-            ]
+            ],
+            [
+                'word_id' => 2,
+                'text' => 'Choice 3',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'word_id' => 2,
+                'text' => 'Choice 4',
+                'created_at' => Carbon::now()
+            ],
+        ]);
+
+        DB::table('choices')->insert([
+            'word_id' => 3,
+            'text' => 'Book',
+            'created_at' => Carbon::now(),
+            'is_correct' =>1,
+        ]);
+        DB::table('choices')->insert([
+            [
+                'word_id' => 3,
+                'text' => 'Choice 2',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'word_id' => 3,
+                'text' => 'Choice 3',
+                'created_at' => Carbon::now()
+            ],
+            [
+                'word_id' => 3,
+                'text' => 'Choice 4',
+                'created_at' => Carbon::now()
+            ],
         ]);
     }
 }

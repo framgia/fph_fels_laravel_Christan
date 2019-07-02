@@ -24,9 +24,11 @@ class LessonController extends Controller
     {
         $attributes = $this->validateLesson();
         $attributes['user_id'] = auth()->id();
-        Lesson::create($attributes);
+        $lesson = new Lesson;
+        $lesson->createLesson($attributes);
+        $quiz = Lesson::where($attributes)->first();
 
-        return redirect('/lessons');
+        return redirect('/quiz/' . $quiz->id);
     }
 
     private function validateLesson()
