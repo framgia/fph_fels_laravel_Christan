@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
 });
 
 Auth::routes();
@@ -32,3 +32,5 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('lessons', 'LessonController');
 
 Route::resource('quiz', 'QuizController');
+
+Route::resource('answer', 'AnswerController');

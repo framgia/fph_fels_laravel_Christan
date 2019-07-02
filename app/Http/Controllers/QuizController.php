@@ -16,8 +16,12 @@ class QuizController extends Controller
 
     public function show(Quiz $quiz)
     {
-        $words = Word::where('category_id', $quiz->lesson->category_id)->paginate(1);
+        if($quiz->completed === 1) {
+            return redirect('/lessons');
+        } else {
+            $words = Word::where('category_id', $quiz->lesson->category_id)->paginate(1);
 
-        return view('quiz.quiz', compact('words', 'quiz'));
+            return view('quiz.quiz', compact('words', 'quiz'));
+        }
     }
 }

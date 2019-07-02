@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Answer;
 use Illuminate\Database\Eloquent\Model;
 
 class Choice extends Model
@@ -11,6 +12,11 @@ class Choice extends Model
     public function word()
     {
         return $this->belongsTo(Word::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 
     public function newRecord($attributes)
