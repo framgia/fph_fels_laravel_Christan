@@ -46,6 +46,7 @@ class AdminWordsController extends Controller
         $attributes = $request->validated();
         $attributes['word_id'] = $word->id;
         $word->updateRecord($attributes);
+        session()->flash('message', $word->text . ' has been updated.');
 
         return redirect('/admin/categories/' . $word->category->id);
     }
@@ -54,6 +55,7 @@ class AdminWordsController extends Controller
     {
         $word->deleteRecord($word);
         $word->delete();
+        session()->flash('message', $word->text . ' has been deleted.');
 
         return redirect('admin/categories/' . $word->category->id);
     }

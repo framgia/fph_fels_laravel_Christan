@@ -23,7 +23,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                            <input type="radio" name="answer" value="0" required>
+                                                <input type="radio" name="answer" value="0" required>
                                             </div>
                                         </div>
                                         <input type="text" name="choice0" id="choice0" class="form-control" required>
@@ -43,7 +43,7 @@
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                            <input type="radio" name="answer" value="2">
+                                                <input type="radio" name="answer" value="2">
                                             </div>
                                         </div>
                                         <input type="text" name="choice2" id="choice2" class="form-control" required>
