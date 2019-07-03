@@ -46,6 +46,9 @@
                                 <a href="/admin/categories" class="dropdown-item">
                                     Admin | Categories
                                 </a>
+                                <a href="/admin/users" class="dropdown-item">
+                                    Admin | Users
+                                </a>
                             @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
