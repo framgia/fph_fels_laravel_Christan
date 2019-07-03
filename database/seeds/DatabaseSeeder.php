@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('users')->insert([
             'first_name' => 'Admin',
             'last_name' => 'User',
@@ -47,7 +49,97 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Seeded Project 2',
                 'description' => 'Project Description',
                 'created_at' => Carbon::now()
-            ]
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
+            [
+                'title' => Str::random(10),
+                'description' => Str::random(25),
+                'created_at' => Carbon::now()
+            ],
         ]);
 
         DB::table('words')->insert([
@@ -146,5 +238,7 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()
             ],
         ]);
+
+
     }
 }

@@ -64,4 +64,9 @@
         </table>
     </div>
 </div>
+<div class="row float-right">
+    <div class="col-lg-4">
+        {{ $categories->links() }}
+    </div>
+</div>
 @endsection

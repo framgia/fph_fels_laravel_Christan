@@ -15,7 +15,7 @@ class AdminCategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5);
 
         return view('admin.category.categories', compact('categories'));
     }
@@ -47,6 +47,7 @@ class AdminCategoryController extends Controller
     public function update(StoreCategory $request, Category $category)
     {
         $category->update($request->validated());
+        session()->flash('message', $category->title . ' category has been updated.');
 
         return redirect('/admin/categories');
     }
@@ -55,6 +56,7 @@ class AdminCategoryController extends Controller
     {
         $category->deleteRecord();
         $category->delete();
+        session()->flash('message', $category->title . ' has been deleted.');
 
         return redirect('/admin/categories');
     }
