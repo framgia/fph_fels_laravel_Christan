@@ -4,9 +4,9 @@
 <div class="row justify-content-center">
     <div class="col-lg-12">
         @if (session('message'))
-            <div class="alert alert-success" role="alert">
-                {{ session('message') }}
-            </div>
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
         @endif
     </div>
     <div class="col-lg-12">
@@ -45,49 +45,52 @@
                         </div>
                     </div>
                     @if (Auth::user()->id !== $user->id)
-                        <form action="/relationship/{{ $relationship != null ? $relationship->id : '' }}" method="POST">
-                            @csrf
-                            @method($relationship != null ? "DELETE" : "POST")
-                            <input type="hidden" name="follower_id" value="{{ Auth::user()->id }}">
-                            <input type="hidden" name="followed_id" value="{{ $user->id}} ">
-                            <div class="row justify-content-center mt-4">
-                                <div class="col">
-                                    <button class="btn btn-primary btn-block" type="submit">
-                                        {{ $relationship != null ? "Unfollow" : "Follow" }}
-                                    </button>
-                                </div>
+                    <form action="/relationship/{{ $relationship != null ? $relationship->id : '' }}" method="POST">
+                        @csrf
+                        @method($relationship != null ? "DELETE" : "POST")
+                        <input type="hidden" name="follower_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="followed_id" value="{{ $user->id}} ">
+                        <div class="row justify-content-center mt-4">
+                            <div class="col">
+                                <button class="btn btn-primary btn-block" type="submit">
+                                    {{ $relationship != null ? "Unfollow" : "Follow" }}
+                                </button>
                             </div>
-                        </form>
+                        </div>
+                    </form>
                     @endif
                     <div class="row justify-content-center mt-4 mb-4">
-                        Learned 20 words
+                        <a href="/answer/{{ $user->id }}">
+                            Learned {{ $user->getLearnedWords()->count() }} words
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <ul class="list-unstyled">
                         @foreach ($user->activities->sortByDesc('created_at')->take(10) as $activity)
-                            <li class="media mt-4">
-                                <img src="/avatar/{{ $user->avatar }}" width="75" class="mr-3 img-fluid" alt="...">
-                                <div class="media-body">
-                                    <p>
-                                        <a href="/profile/{{ $activity->user->id }}">
-                                            {{ $activity->user->id === auth()->user()->id ? 'You' : $activity->user->first_name }}
-                                        </a>
-                                        @if($activity->notifiable_type === "App\Quiz")
-                                            {{ $activity->content }}
-                                            <a href="/categories/{{ $activity->notifiable->lesson->category->id }}">
-                                                {{ $activity->notifiable->lesson->category->title }}
-                                            </a>
-                                        @elseif ($activity->notifiable_type ===  "App\Relationship")
-                                            {{ $activity->content }}
-                                            <a href="/profile/{{ $activity->notifiable->followed->id }}">
-                                                {{ $activity->notifiable->followed->id == auth()->user()->id ? 'You' : $activity->notifiable->followed->first_name }}
-                                            </a>
-                                        @endif
-                                    </p>
-                                    <small class="muted">{{ Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</small>
-                                </div>
-                            </li>
+                        <li class="media mt-4">
+                            <img src="/avatar/{{ $user->avatar }}" width="75" class="mr-3 img-fluid" alt="...">
+                            <div class="media-body">
+                                <p>
+                                    <a href="/profile/{{ $activity->user->id }}">
+                                        {{ $activity->user->id === auth()->user()->id ? 'You' : $activity->user->first_name }}
+                                    </a>
+                                    @if($activity->notifiable_type === "App\Quiz")
+                                    {{ $activity->content }}
+                                    <a href="/categories/{{ $activity->notifiable->lesson->category->id }}">
+                                        {{ $activity->notifiable->lesson->category->title }}
+                                    </a>
+                                    @elseif ($activity->notifiable_type === "App\Relationship")
+                                    {{ $activity->content }}
+                                    <a href="/profile/{{ $activity->notifiable->followed->id }}">
+                                        {{ $activity->notifiable->followed->id == auth()->user()->id ? 'You' : $activity->notifiable->followed->first_name }}
+                                    </a>
+                                    @endif
+                                </p>
+                                <small
+                                    class="muted">{{ Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</small>
+                            </div>
+                        </li>
                         @endforeach
                     </ul>
                 </div>

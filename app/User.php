@@ -59,4 +59,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class);
     }
+
+    public function getLearnedWords()
+    {
+        $answers = collect();
+        foreach($this->lessons as $lesson) {
+            foreach($lesson->answers as $answer) {
+                if($answer->choice->is_correct == 1) {
+                    $answers->push($answer);
+                }
+            }
+        }
+        return $answers;
+    }
 }

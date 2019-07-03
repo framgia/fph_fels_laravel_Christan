@@ -7,10 +7,9 @@ use App\Relationship;
 
 class UserController extends Controller
 {
-    public function profile($id)
+    public function profile(User $user)
     {
-        $user = User::whereId($id)->first();
-        $relationship = Relationship::where('follower_id', auth()->id())->where('followed_id', $id)->first();
+        $relationship = Relationship::where('follower_id', auth()->id())->where('followed_id', $user->id)->first();
 
         return view('profile', compact('user', 'relationship'));
     }

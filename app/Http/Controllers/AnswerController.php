@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Quiz;
 use App\Answer;
+use App\Lesson;
 use App\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AnswerController extends Controller
 {
+
+    public function show(User $user)
+    {
+        $answers = $user->getLearnedWords();
+
+        return view('wordslearned', compact('answers', 'user'));
+    }
+
     public function store()
     {
         $attributes = $this->validateAnswer();
