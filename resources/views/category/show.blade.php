@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3> {{ $category->title }}</h3>
-                    <small class="muted">Number of words: 10</small>
+                    <small class="muted">Number of words: {{ $category->words->count() }}</small>
                     <p class="mt-3">
                         {{ $category->description }}
                     </p>
