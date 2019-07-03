@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('profile/{id}', 'UserController@profile');
+Route::get('profile/{user}', 'UserController@profile');
 
 Route::prefix('admin')->group(function (){
     Route::resource('/categories', 'AdminCategoryController');
@@ -34,6 +34,6 @@ Route::resource('lessons', 'LessonController');
 
 Route::resource('quiz', 'QuizController');
 
-Route::resource('answer', 'AnswerController');
+Route::resource('answer', 'AnswerController', ['parameters' => ['answer' => 'user'] ]);
 
 Route::resource('relationship', 'RelationshipController');
