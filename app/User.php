@@ -7,7 +7,6 @@ use App\Activity;
 use App\Relationship;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -87,5 +86,24 @@ class User extends Authenticatable
         $this->save();
 
         return $this;
+    }
+
+    public function updateUser($attributes)
+    {
+        $this->fill([
+            'first_name' => $attributes['first_name'],
+            'last_name' => $attributes['last_name'],
+            'email' => $attributes['email'],
+            'is_admin' => $attributes['is_admin'],
+        ]);
+        $this->updatePasswordIfNotEmpty($attributes['password']);
+        $this->save();
+    }
+
+    protected function updatePasswordIfNotEmpty($password)
+    {
+        if(!empty($password)) {
+            return $this->password = Hash::make($password);
+        }
     }
 }
