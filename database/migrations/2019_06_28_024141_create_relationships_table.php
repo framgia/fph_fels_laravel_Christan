@@ -18,8 +18,8 @@ class CreateRelationshipsTable extends Migration
             $table->unsignedBigInteger('follower_id');
             $table->unsignedBigInteger('followed_id');
             $table->timestamps();
-            $table->foreign('follower_id')->references('id')->on('users');
-            $table->foreign('followed_id')->references('id')->on('users');
+            $table->foreign('follower_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('followed_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -56,7 +56,7 @@
                             @endif
                         </td>
                         <td>
-                            <form method="POST" action="/admin/users">
+                            <form method="POST" action="/admin/users/{{ $user->id }}">
                                 @csrf
                                 @method('DELETE')
                                 <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-link">
