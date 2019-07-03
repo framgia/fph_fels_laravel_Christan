@@ -49,4 +49,14 @@ class AdminUserController extends Controller
 
         return redirect('/admin/users')->with('message', 'User ' . $attributes['email'] . ' has been updated');
     }
+
+    public function destroy(User $user)
+    {
+        $findUser = User::find($user->id);
+        \Session::getHandler()->destroy($findUser->session_id);
+
+        $user->delete();
+
+        return redirect('/admin/users');
+    }
 }
