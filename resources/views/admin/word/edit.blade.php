@@ -3,7 +3,10 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <div class="card">
+        @include('errors')
+    </div>
+    <div class="col-md-12">
+        <div class="card mt-4">
             <div class="card-header">
                 <b>Edit Word</b>
             </div>
@@ -45,9 +48,6 @@
                 </form>
             </div>
         </div>
-    </div>
-    <div class="col-md-12">
-        @include('errors')
     </div>
 </div>
 @endsection

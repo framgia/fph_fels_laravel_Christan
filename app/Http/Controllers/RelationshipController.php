@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Activity;
 use App\Relationship;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreRelationship;
 
 class RelationshipController extends Controller
 {
-    public function store()
+    public function store(StoreRelationship $request)
     {
-        $attributes = $this->validateRelationship();
+        $attributes = $request->validated();
         Relationship::create($attributes);
         $user = User::whereId($attributes['followed_id'])->first();
         $relationship = Relationship::where($attributes)->first();
@@ -26,20 +26,12 @@ class RelationshipController extends Controller
         return redirect('/profile/' . $attributes['followed_id'])->with('message', 'You have followed ' . $user->first_name);
     }
 
-    public function destroy(Relationship $relationship)
+    public function destroy(Relationship $relationship, StoreRelationship $request)
     {
-        $attributes = $this->validateRelationship();
+        $attributes = $request->validated();
         $relationship->delete();
         $user = User::whereId($attributes['followed_id'])->first();
 
         return redirect('/profile/' . $attributes['followed_id'])->with('message', 'You have unfollowed ' . $user->first_name );
-    }
-
-    protected function validateRelationship()
-    {
-        return request()->validate([
-            'follower_id' => ['required'],
-            'followed_id' => ['required']
-        ]);
     }
 }
