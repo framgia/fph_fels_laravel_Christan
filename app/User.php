@@ -5,6 +5,7 @@ namespace App;
 use App\Lesson;
 use App\Activity;
 use App\Relationship;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name',  'email', 'password',
+        'first_name', 'last_name',  'email', 'password', 'is_admin'
     ];
 
     /**
@@ -71,5 +72,20 @@ class User extends Authenticatable
             }
         }
         return $answers;
+    }
+
+    public function createUser($attributes)
+    {
+        $this->fill([
+            'first_name' => $attributes['first_name'],
+            'last_name' => $attributes['last_name'],
+            'email' => $attributes['email'],
+            'is_admin' => $attributes['role'],
+            'password' => Hash::make($attributes['password']),
+        ]);
+
+        $this->save();
+
+        return $this;
     }
 }
