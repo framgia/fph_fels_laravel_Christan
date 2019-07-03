@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Quiz;
+use App\User;
 use App\Answer;
 use App\Lesson;
 use App\Activity;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreAnswer;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 
 class AnswerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function show(User $user)
     {
@@ -20,9 +25,9 @@ class AnswerController extends Controller
         return view('wordslearned', compact('answers', 'user'));
     }
 
-    public function store()
+    public function store(StoreAnswer $request)
     {
-        $attributes = $this->validateAnswer();
+        $attributes = $request->validated();
         Answer::create([
             'choice_id' => $attributes['answer'],
             'lesson_id' => $attributes['lesson_id']
@@ -41,16 +46,5 @@ class AnswerController extends Controller
         }
 
         return redirect($attributes['next_url']);
-    }
-
-    protected function validateAnswer()
-    {
-        return request()->validate([
-            'answer' => ['required'],
-            'lesson_id' => ['required'],
-            'next_url' => ['required'],
-            'completed' => ['required'],
-            'quiz_id' => ['required']
-        ]);
     }
 }

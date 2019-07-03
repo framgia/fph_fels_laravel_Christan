@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Quiz;
 use App\Answer;
 use App\Lesson;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreLesson;
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
@@ -19,12 +19,13 @@ class LessonController extends Controller
     public function index()
     {
         $lessons = Auth::user()->lessons;
+
         return view('lessons.lessons', compact('lessons'));
     }
 
-    public function store()
+    public function store(StoreLesson $request)
     {
-        $attributes = $this->validateLesson();
+        $attributes = $request->validated();
         $attributes['user_id'] = auth()->id();
         if(Lesson::where($attributes)->get()->count()) {
             return redirect('/home')->with('message', 'You have already taken this lesson!');
@@ -44,12 +45,5 @@ class LessonController extends Controller
         $quiz = Quiz::where('lesson_id', $id)->first();
 
         return view('lessons.show', compact('lesson', 'answers', 'quiz'));
-    }
-
-    private function validateLesson()
-    {
-        return request()->validate([
-            'category_id' => 'required'
-        ]);
     }
 }

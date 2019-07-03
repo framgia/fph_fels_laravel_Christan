@@ -3,7 +3,8 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card">
+        @include('errors')
+        <div class="card mt-4">
             <div class="card-header">
                 <b>New Category</b>
             </div>
@@ -16,7 +17,8 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Category Description</label>
-                        <textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Anything about Science!" required>{{ old('description') }}</textarea>
+                        <textarea name="description" id="description" cols="30" rows="10" class="form-control"
+                            placeholder="Anything about Science!" required>{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success" type="submit">Create Category</button>
