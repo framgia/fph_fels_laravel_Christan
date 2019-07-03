@@ -3,9 +3,9 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        Admin Panel | Categories
+        Admin Panel | Users
         <ul class="float-right">
-            <a href="/admin/categories/create">
+            <a href="/admin/users/create">
                 <button class="btn btn-sm btn-success">
                     Create New <i class="fas fa-plus-square"></i>
                 </button>
@@ -24,36 +24,46 @@
     <div class="col-lg-12">
         <table class="table table-striped">
             <thead class="thead-dark">
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Action</th>
-            </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>E-mail</th>
+                    <th>User Role</th>
+                    <th>Action</th>
+                </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($users as $user)
                     <tr>
                         <td>
-                            <a href="/admin/categories/{{ $category->id }}">
-                                {{ $category->title }}
-                            </a>
+                            {{ $user->id }}
                         </td>
                         <td>
-                            {{ str_limit($category->description, $limit=30, $end='..') }}
+                            {{ $user->first_name }}
                         </td>
                         <td>
-                            <form method="POST" action="/admin/categories/{{ $category->id }}">
+                            {{ $user->last_name }}
+                        </td>
+                        <td>
+                            {{ $user->email }}
+                        </td>
+                        <td>
+                            @if($user->is_admin)
+                                Admin
+                            @else
+                                User
+                            @endif
+                        </td>
+                        <td>
+                            <form method="POST" action="/admin/users">
                                 @csrf
                                 @method('DELETE')
-                                <a href="/admin/categories/{{ $category->id }}/words/create" class="btn btn-link">
-                                    Add Word
-                                </a>
-                                |
-                                <a href="/admin/categories/{{ $category->id }}/edit" class="btn btn-link">
+                                <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-link">
                                     Edit
                                 </a>
                                 |
-                                <button type="submit" class="btn btn-link" onclick="return confirm('Are you sure?')">
+                                <button class="btn btn-link" type="submit" onclick="return confirm('Are you sure?')">
                                     Delete
                                 </button>
                             </form>
@@ -62,11 +72,6 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-</div>
-<div class="row float-right">
-    <div class="col-lg-4">
-        {{ $categories->links() }}
     </div>
 </div>
 @endsection
