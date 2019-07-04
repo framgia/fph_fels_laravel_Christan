@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('profile/{user}', 'UserController@profile');
 
 Route::prefix('admin')->group(function (){
@@ -38,3 +39,5 @@ Route::resource('quiz', 'QuizController');
 Route::resource('answer', 'AnswerController', ['parameters' => ['answer' => 'user'] ]);
 
 Route::resource('relationship', 'RelationshipController');
+
+Route::resource('users', 'UserController');

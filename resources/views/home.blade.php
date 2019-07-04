@@ -3,6 +3,9 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-lg-12">
+        <h1 class="title">Home</h1>
+    </div>
+    <div class="col-lg-12">
         @if (session('message'))
         <div class="alert alert-success" role="alert">
             {{ session('message') }}
@@ -44,15 +47,6 @@
                                         {{ $activity->user->id == $user->id ? 'You' : $activity->user->first_name }}
                                     </a>
                                     {{ $activity->content }}
-                                    @if($activity->notifiable_type === "App\Quiz")
-                                    <a href="/categories/{{ $activity->notifiable->lesson->category->id }}">
-                                        {{ $activity->notifiable->lesson->category->title }}
-                                    </a>
-                                    @elseif ($activity->notifiable_type === "App\Relationship")
-                                    <a href="/profile/{{ $activity->notifiable->followed->id }}">
-                                        {{ $activity->notifiable->followed->id == $user->id ? 'You' : $activity->notifiable->followed->first_name }}
-                                    </a>
-                                    @endif
                                 </p>
                                 <small
                                     class="muted">{{ Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</small>

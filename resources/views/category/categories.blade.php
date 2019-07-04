@@ -2,7 +2,7 @@
 
 @section('content')
 <h1 class="title">Categories</h1>
-<div class="card-deck">
+<div class="card-deck mt-4">
     @foreach ($categories as $category)
         <div class="card shadow">
             <div class="card-body">
@@ -13,7 +13,7 @@
                 <form method="POST" action="/lessons/">
                     @csrf
                     <input type="hidden" name="category_id" value="{{ $category->id }}">
-                    <button class="btn btn-outline-primary float-right">Start Lesson</button>
+                    <button class="btn btn-primary float-right">Start Lesson</button>
                 </form>
             </div>
         </div>
