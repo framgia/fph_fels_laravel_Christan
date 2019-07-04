@@ -75,17 +75,7 @@
                                     <a href="/profile/{{ $activity->user->id }}">
                                         {{ $activity->user->id === auth()->user()->id ? 'You' : $activity->user->first_name }}
                                     </a>
-                                    @if($activity->notifiable_type === "App\Quiz")
                                     {{ $activity->content }}
-                                    <a href="/categories/{{ $activity->notifiable->lesson->category->id }}">
-                                        {{ $activity->notifiable->lesson->category->title }}
-                                    </a>
-                                    @elseif ($activity->notifiable_type === "App\Relationship")
-                                    {{ $activity->content }}
-                                    <a href="/profile/{{ $activity->notifiable->followed->id }}">
-                                        {{ $activity->notifiable->followed->id == auth()->user()->id ? 'You' : $activity->notifiable->followed->first_name }}
-                                    </a>
-                                    @endif
                                 </p>
                                 <small
                                     class="muted">{{ Carbon\Carbon::parse($activity->created_at)->diffForHumans() }}</small>

@@ -22,7 +22,7 @@ class Quiz extends Model
 
     public function activity()
     {
-        return $this->morphMany('App\Activity', 'notifiable');
+        return $this->morphTo('App\Activity', 'notifiable');
     }
 
     public function createQuiz($id)

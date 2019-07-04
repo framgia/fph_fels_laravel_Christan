@@ -20,7 +20,7 @@ class RelationshipController extends Controller
             'user_id' => Auth::user()->id,
             'notifiable_id' => $relationship->id,
             'notifiable_type' => 'App\Relationship',
-            'content' => ' followed '
+            'content' => ' followed ' . $relationship->followed->first_name
         ]);
 
         return redirect('/profile/' . $attributes['followed_id'])->with('message', 'You have followed ' . $user->first_name);

@@ -100,6 +100,13 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function getRelationship(User $user)
+    {
+        $relationship = $this->followers->where('follower_id', $user->id);
+
+        return !empty($relationship) ? $relationship->first() : null;
+    }
+
     protected function updatePasswordIfNotEmpty($password)
     {
         if(!empty($password)) {

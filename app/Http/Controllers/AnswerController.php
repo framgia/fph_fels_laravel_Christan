@@ -41,7 +41,7 @@ class AnswerController extends Controller
                 'user_id' => Auth::user()->id,
                 'notifiable_id' => $quiz->id,
                 'notifiable_type' => 'App\Quiz',
-                'content' => ' learned ' . $quiz->result . ' of ' . $quiz->lesson->category->words->count() . ' words in '
+                'content' => ' learned ' . $quiz->result . ' of ' . $quiz->lesson->category->words->count() . ' words in ' . $quiz->lesson->category->title
             ]);
         }
 
