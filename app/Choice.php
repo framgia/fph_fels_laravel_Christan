@@ -22,10 +22,10 @@ class Choice extends Model
     public function newRecord($attributes)
     {
         $choices = [
+            $attributes['choice0'],
             $attributes['choice1'],
             $attributes['choice2'],
             $attributes['choice3'],
-            $attributes['choice4'],
         ];
         foreach ($choices as $key => $choice) {
             if ($key == $attributes['answer']) {

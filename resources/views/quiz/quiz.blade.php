@@ -7,7 +7,7 @@
             <div class="card-header">
                 {{ $quiz->lesson->category->title }}
                 <span class="float-right">
-                    {{ $words->currentPage() }} of  {{ $words->lastPage() }}
+                    {{ $words->currentPage() }} of {{ $words->lastPage() }}
                 </span>
             </div>
             <div class="card-body">

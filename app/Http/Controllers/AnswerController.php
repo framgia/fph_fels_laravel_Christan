@@ -27,16 +27,21 @@ class AnswerController extends Controller
 
     public function store(StoreAnswer $request)
     {
+        
         $attributes = $request->validated();
+
         Answer::create([
             'choice_id' => $attributes['answer'],
             'lesson_id' => $attributes['lesson_id']
         ]);
-        if($attributes['completed'] == 1) {
+
+        if ($attributes['completed'] == 1) {
             $quiz = Quiz::whereId($attributes['quiz_id'])->get()->first();
+
             $quiz->completed = 1;
             $quiz->result = $quiz->getResult($attributes['lesson_id']);
             $quiz->save();
+
             (new Activity)->create([
                 'user_id' => Auth::user()->id,
                 'notifiable_id' => $quiz->id,

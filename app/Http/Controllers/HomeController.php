@@ -28,6 +28,7 @@ class HomeController extends Controller
         $user = Auth::user();
         $userActivities = $user->activities;
         $followedUsers = $user->following;
+        
         if($followedUsers) {
             foreach($followedUsers as $record) {
                 foreach ($record->followed->activities as $activity) {
